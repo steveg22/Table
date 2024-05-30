@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1>Table</h1>
+    <div id="table-container"></div>
+  </div>
+  <script src="table.js"></script>
+  <script>
+    const spaceObjects = [
+      {
+        id: 1,
+        name: 'Andromeda Galaxy',
+        type: 'Galaxy',
+        distance: '2.537 million light years',
+        discoveredBy: 'Abd al-Rahman al-Sufi',
+        notableFeature: 'Closest spiral galaxy to the Milky Way',
+        imageUrl: 'https://example.com/andromeda.jpg'
+      },
+      {
+        id: 2,
+        name: 'Betelgeuse',
+        type: 'Star',
+        distance: '642.5 light years',
+        discoveredBy: 'Ptolemy',
+        notableFeature: 'Red supergiant star in Orion',
+        imageUrl: 'https://example.com/betelgeuse.jpg'
+      },
+      {
+        id: 3,
+        name: 'Crab Nebula',
+        type: 'Nebula',
+        distance: '6,523 light years',
+        discoveredBy: 'John Bevis',
+        notableFeature: 'Supernova remnant',
+        imageUrl: 'https://example.com/crabnebula.jpg'
+      },
+      {
+        id: 4,
+        name: 'Europa',
+        type: 'Moon',
+        distance: '628.3 million km from Earth',
+        discoveredBy: 'Galileo Galilei',
+        notableFeature: 'Ice-covered ocean',
+        imageUrl: 'https://example.com/europa.jpg'
+      },
+      {
+        id: 5,
+        name: 'Hale-Bopp',
+        type: 'Comet',
+        distance: 'Varies',
+        discoveredBy: 'Alan Hale and Thomas Bopp',
+        notableFeature: 'Visible to the naked eye for 18 months',
+        imageUrl: 'https://example.com/halebopp.jpg'
+      },
+      {
+        id: 6,
+        name: 'International Space Station',
+        type: 'Space Station',
+        distance: '408 km from Earth',
+        discoveredBy: 'NASA/Roscosmos/ESA/JAXA/CNSA',
+        notableFeature: 'Largest human-made structure in space',
+        imageUrl: 'https://example.com/iss.jpg'
+      },
+      {
+        id: 7,
+        name: 'Jupiter',
+        type: 'Planet',
+        distance: '778.5 million km from Sun',
+        discoveredBy: 'Ancient astronomers',
+        notableFeature: 'Largest planet in the Solar System',
+        imageUrl: 'https://example.com/jupiter.jpg'
+      },
+      {
+        id: 8,
+        name: 'Milky Way',
+        type: 'Galaxy',
+        distance: '0 (we are in it)',
+        discoveredBy: 'Ancient astronomers',
+        notableFeature: 'Home galaxy of the Solar System',
+        imageUrl: 'https://example.com/milkyway.jpg'
+      },
+      {
+        id: 9,
+        name: 'Saturn V',
+        type: 'Rocket',
+        distance: 'N/A',
+        discoveredBy: 'NASA',
+        notableFeature: 'Launched Apollo missions',
+        imageUrl: 'https://example.com/saturnv.jpg'
+      },
+      {
+        id: 10,
+        name: 'Valles Marineris',
+        type: 'Canyon',
+        distance: '225 million km from Earth',
+        discoveredBy: 'Mariner 9 spacecraft',
+        notableFeature: 'Largest canyon in the Solar System',
+        imageUrl: 'https://example.com/vallesmarineris.jpg'
+      }
+    ];
+
+    // Usage example
+    const columns = [
+      {header: 'ID', field: 'id'},
+      {header: 'Name', field: 'name'},
+      {header: 'Type', field: 'type'},
+      {header: 'Distance', field: 'distance'},
+      {header: 'Discovered By', field: 'discoveredBy'},
+      {header: 'Notable Feature', field: 'notableFeature'}
+    ];
+
+    const tableContainer = document.getElementById('table-container');
+    const dataTable = new DataTable({element: tableContainer, columns, data: spaceObjects});
+  </script>
+</body>
+
+</html>

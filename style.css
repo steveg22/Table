@@ -1,0 +1,149 @@
+/* Base styles */
+body {
+  background-color: #121212;
+  color: #e0e0e0;
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+a {
+  color: #bb86fc;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #ff79c6;
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* Header */
+header {
+  background: #1f1f1f;
+  padding: 20px 0;
+  border-bottom: 1px solid #333;
+}
+
+header h1 {
+  color: #bb86fc;
+  text-align: center;
+}
+
+/* Navigation */
+nav {
+  background: #282828;
+  padding: 10px;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 10px;
+}
+
+nav ul li a {
+  color: #e0e0e0;
+}
+
+nav ul li a:hover {
+  color: #ff79c6;
+}
+
+/* Main content */
+main {
+  background: #1e1e1e;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Footer */
+footer {
+  background: #1f1f1f;
+  color: #aaa;
+  text-align: center;
+  padding: 10px 0;
+  border-top: 1px solid #333;
+  margin-top: 20px;
+}
+
+footer p {
+  margin: 0;
+}
+
+/* Buttons */
+button {
+  background: #bb86fc;
+  color: #121212;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #ff79c6;
+}
+
+/* Forms */
+input,
+textarea {
+  background: #333;
+  color: #e0e0e0;
+  border: 1px solid #444;
+  padding: 10px;
+  border-radius: 4px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #bb86fc;
+  outline: none;
+}
+
+/* Cards */
+.card {
+  background: #2a2a2a;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+}
+
+.card h2 {
+  color: #bb86fc;
+}
+
+.card p {
+  color: #e0e0e0;
+}
+
+table th[data-sort] {
+  cursor: pointer;
+}
+
+table th[data-sort]::after {
+  content: '>';
+  margin-left: 0.2em;
+}
+
+table th[data-sort="asc"]::after {
+  content: '^';
+}
+
+table th[data-sort="desc"]::after {
+  content: 'v';
+}
