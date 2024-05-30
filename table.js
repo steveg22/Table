@@ -13,8 +13,6 @@ class DataTable {
       throw new Error("Element not provided!");
     }
 
-    console.log("data", data);
-
     this.element = element;
     this.data = data;
     this.filtered = [];
@@ -31,8 +29,7 @@ class DataTable {
 
   initialDraw() {
     const container = document.createElement("div");
-    container.classList.add("table-container", "flow");
-    console.log("show search", this.showSearch)
+    container.classList.add("flow");
     if (this.showSearch) {
       const searchContainer = document.createElement("div");
       searchContainer.classList.add("search-container");
@@ -58,14 +55,18 @@ class DataTable {
         } else {
           this.filtered = this.data.slice();
         }
-        console.log(this.data.length, this.data);
         this.renderTable();
       });
       container.append(searchContainer);
     }
-    const table = document.createElement("div");
-    table.id = "table";
-    container.append(table);
+    const tableContainer = document.createElement("div");
+    tableContainer.classList.add("table-container");
+    container.append(tableContainer);
+
+    const paginationContainer = document.createElement("div");
+    paginationContainer.classList.add("pagination-container");
+    container.append(paginationContainer);
+
     this.element.append(container);
   }
 
@@ -101,10 +102,6 @@ class DataTable {
     this.columns.forEach(column => {
       const th = document.createElement('th');
       th.textContent = column.header;
-      th.style.border = '1px solid #ddd';
-      th.style.padding = '8px';
-      th.style.backgroundColor = '#333';
-      th.style.color = '#fff';
       if (!column.ignoreFiltering) {
         if (this.sortColumn.field === column.field) {
           th.dataset.sort = this.sortColumn.order;
@@ -145,10 +142,6 @@ class DataTable {
         } else {
           td.textContent = rowData[column.field];
         }
-        td.style.border = '1px solid #ddd';
-        td.style.padding = '8px';
-        td.style.color = '#e0e0e0';
-        td.style.backgroundColor = '#1e1e1e';
         row.appendChild(td);
       });
       tbody.appendChild(row);
@@ -159,8 +152,6 @@ class DataTable {
   renderTable() {
     // Create table element
     const table = document.createElement('table');
-    table.style.width = '100%';
-    table.style.borderCollapse = 'collapse';
     table.classList.add("table");
 
     table.appendChild(this.renderTableHead());
@@ -168,7 +159,7 @@ class DataTable {
     table.appendChild(this.renderTableBody());
 
     // Append table to the provided element
-    const tableContainer = document.querySelector("#table");
+    const tableContainer = document.querySelector(".table-container");
     tableContainer.innerHTML = "";
     tableContainer.appendChild(table);
   }

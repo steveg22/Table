@@ -791,28 +791,6 @@ input:placeholder-shown + .btn-password-reveal {
   background-color: hsl(var(--color-muted) / 0.2);
 }
 
-.table th[data-key] {
-  cursor: pointer;
-}
-
-.table th[data-key] > div {
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: center;
-  gap: 0.1em;
-}
-
-.table th[data-key]:hover {
-  opacity: 0.9;
-}
-
-.table .icon {
-  stroke: currentColor;
-  fill: none;
-  stroke-width: 2;
-  flex-shrink: 0;
-}
-
 .table-container .card {
   max-width: 40rem;
   margin: var(--space-lg) auto;
@@ -924,9 +902,6 @@ input:placeholder-shown + .btn-password-reveal {
 
 .table .badge--small {
   display: inline-block; 
-  /* width: 100%; */
-  /* margin: 0 auto; */
-
   min-width: calc(var(--fs-sm) * 5);
 }
 
@@ -979,14 +954,18 @@ table th[data-sort] {
 }
 
 table th[data-sort]::after {
-  content: '>';
+  content: '\2195';
   margin-left: 0.2em;
 }
 
 table th[data-sort="asc"]::after {
-  content: '^';
+  content: '\25B2';
+  content: '\2191';
+  color:hsl(var(--color-secondary));
 }
 
 table th[data-sort="desc"]::after {
-  content: 'v';
+  content: '\25BC';
+  content: '\2193';
+  color:hsl(var(--color-secondary));
 }
