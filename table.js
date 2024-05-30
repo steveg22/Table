@@ -17,14 +17,16 @@ class DataTable {
 
     this.element = element;
     this.data = data;
+    this.filtered = [];
     this.columns = columns;
 
     this.sortColumn = sortColumn;
 
     this.showSearch = showSearch;
 
-//    this.init();
+    //    this.init();
     this.initialDraw();
+    this.init();
   }
 
   initialDraw() {
@@ -42,11 +44,28 @@ class DataTable {
       searchInput.placeholder = "Search...";
       searchContainer.innerHTML = searchIcon;
       searchContainer.append(searchInput);
+      searchInput.addEventListener("input", (event) => {
+        const searchTerm = event.target.value.trim().toLowerCase();
+        if (searchTerm) {
+          this.filtered = this.data.filter((entry) => {
+            for (let i = 0; i < this.columns.length; i++) {
+              if (!this.columns[i].ignoreFiltering) {
+                const field = String(entry[this.columns[i].field]).toLowerCase();
+                if (field.indexOf(searchTerm) !== -1) return true;
+              }
+            }
+          });
+        } else {
+          this.filtered = this.data.slice();
+        }
+        console.log(this.data.length, this.data);
+        this.renderTable();
+      });
       container.append(searchContainer);
     }
-    const heading = document.createElement("h1");
-    heading.textContent = "This is a heading";
-    container.append(heading);
+    const table = document.createElement("div");
+    table.id = "table";
+    container.append(table);
     this.element.append(container);
   }
 
@@ -71,6 +90,7 @@ class DataTable {
 
       return (b[field] > a[field]) - (b[field] < a[field]);
     });
+    this.filtered = this.data.slice();
   }
 
   renderTableHead() {
@@ -116,7 +136,7 @@ class DataTable {
     // Create table body
     const tbody = document.createElement('tbody');
 
-    this.data.forEach(rowData => {
+    this.filtered.forEach(rowData => {
       const row = document.createElement('tr');
       this.columns.forEach(column => {
         const td = document.createElement('td');
@@ -148,8 +168,9 @@ class DataTable {
     table.appendChild(this.renderTableBody());
 
     // Append table to the provided element
-    this.element.innerHTML = "";
-    this.element.appendChild(table);
+    const tableContainer = document.querySelector("#table");
+    tableContainer.innerHTML = "";
+    tableContainer.appendChild(table);
   }
 
 }
