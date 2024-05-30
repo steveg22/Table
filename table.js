@@ -8,7 +8,7 @@
  */
 
 class DataTable {
-  constructor({ element, data, columns, sortColumn = { field: columns[0].field, order: "asc" } }) {
+  constructor({ element, data, columns, showSearch = true, sortColumn = { field: columns[0].field, order: "asc" } }) {
     if (!element) {
       throw new Error("Element not provided!");
     }
@@ -21,7 +21,33 @@ class DataTable {
 
     this.sortColumn = sortColumn;
 
-    this.init();
+    this.showSearch = showSearch;
+
+//    this.init();
+    this.initialDraw();
+  }
+
+  initialDraw() {
+    const container = document.createElement("div");
+    container.classList.add("table-container", "flow");
+    console.log("show search", this.showSearch)
+    if (this.showSearch) {
+      const searchContainer = document.createElement("div");
+      searchContainer.classList.add("search-container");
+      const searchIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="16" height="16" class="icon icon--muted">
+  <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" /></svg>`;
+      const searchInput = document.createElement("input");
+      searchInput.type = "text";
+      searchInput.classList.add("search");
+      searchInput.placeholder = "Search...";
+      searchContainer.innerHTML = searchIcon;
+      searchContainer.append(searchInput);
+      container.append(searchContainer);
+    }
+    const heading = document.createElement("h1");
+    heading.textContent = "This is a heading";
+    container.append(heading);
+    this.element.append(container);
   }
 
   /**
@@ -45,22 +71,6 @@ class DataTable {
 
       return (b[field] > a[field]) - (b[field] < a[field]);
     });
-  }
-
-  renderTable() {
-    // Create table element
-    const table = document.createElement('table');
-    table.style.width = '100%';
-    table.style.borderCollapse = 'collapse';
-    table.classList.add("table");
-
-    table.appendChild(this.renderTableHead());
-
-    table.appendChild(this.renderTableBody());
-
-    // Append table to the provided element
-    this.element.innerHTML = "";
-    this.element.appendChild(table);
   }
 
   renderTableHead() {
@@ -125,4 +135,21 @@ class DataTable {
     });
     return tbody;
   }
+
+  renderTable() {
+    // Create table element
+    const table = document.createElement('table');
+    table.style.width = '100%';
+    table.style.borderCollapse = 'collapse';
+    table.classList.add("table");
+
+    table.appendChild(this.renderTableHead());
+
+    table.appendChild(this.renderTableBody());
+
+    // Append table to the provided element
+    this.element.innerHTML = "";
+    this.element.appendChild(table);
+  }
+
 }
